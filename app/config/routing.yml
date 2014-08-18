@@ -1,0 +1,8 @@
+myAppFilmothequeBundle:
+    resource: "@MyAppFilmothequeBundle/Resources/config/routing.yml"
+    prefix:   /myapp
+
+ens_jobeet:
+    resource: "@EnsJobeetBundle/Resources/config/routing.yml"
+    prefix:   /
+

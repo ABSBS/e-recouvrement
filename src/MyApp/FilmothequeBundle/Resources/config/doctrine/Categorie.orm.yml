@@ -1,0 +1,15 @@
+MyApp\FilmothequeBundle\Entity\Categorie:
+    type: entity
+    table: null
+    repositoryClass: MyApp\FilmothequeBundle\Entity\CategorieRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
