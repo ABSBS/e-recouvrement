@@ -13,7 +13,9 @@ class ActeurController extends Controller
     public function listerAction()
     {
         $em = $this->container->get('doctrine')->getEntityManager();
+        
         $acteurs = $em->getRepository('MyAppFilmothequeBundle:Acteur')->findAll();
+        #$em->
         
     	return $this->render('MyAppFilmothequeBundle:Acteur:lister.html.twig', array(
                 // ...
@@ -24,7 +26,9 @@ class ActeurController extends Controller
     public function ajouterAction()
     {
         $acteur = new Acteur();
-        $form = $this->container->get('form.factory')->create(new ActeurType(),$acteur);
+        $form = $this->container
+        			->get('form.factory')
+        			->create(new ActeurType(),$acteur);
         $message = '';  
         $request = $this->container->get('request') ;
         if ($request->getMethod() == 'POST') {
@@ -71,7 +75,9 @@ class ActeurController extends Controller
       {
       	$message = "";
       	$acteur = new Acteur();
-      	$em  = $this->container->get('doctrine')->getEntityManager();
+      	$em  = $this->container
+      				->get('doctrine')
+      				->getEntityManager();
       	//$form = $this->container->get('form.factory')->create(new ActeurType(),$acteur);
       	//$request = $this->container->get('request');
       	if (isset($id)){

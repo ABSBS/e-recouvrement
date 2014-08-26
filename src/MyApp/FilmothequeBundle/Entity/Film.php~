@@ -21,6 +21,18 @@ class Film
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="MyApp\FilmothequeBundle\Entity\Acteur" , cascade={"persist"})
+     */
+    private $acteur;
+    
+    
+    /**
+     * @ORM\OneToOne(targetEntity="MyApp\FilmothequeBundle\Entity\Categorie")
+     */
+    private $categorie;
 
     /**
      * @var string
@@ -36,17 +48,9 @@ class Film
      */
     private $description;
     
-    /**
-     * 
-     *
-     * @ORM\ManyToMany(targetEntity="Acteur", mappeBy="Film")
-     */
-    private $acteur;
     
-    public function __construct()
-    {
-    	$this->acteur = new ArrayCollection();
-    }
+    
+    
 
 
     /**
@@ -58,6 +62,8 @@ class Film
     {
         return $this->id;
     }
+
+    
 
     /**
      * Set titre
@@ -103,5 +109,51 @@ class Film
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set acteur
+     *
+     * @param \MyApp\FilmothequeBundle\Entity\Acteur $acteur
+     * @return Film
+     */
+    public function setActeur(\MyApp\FilmothequeBundle\Entity\Acteur $acteur = null)
+    {
+        $this->acteur = $acteur;
+
+        return $this;
+    }
+
+    /**
+     * Get acteur
+     *
+     * @return \MyApp\FilmothequeBundle\Entity\Acteur 
+     */
+    public function getActeur()
+    {
+        return $this->acteur;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \MyApp\FilmothequeBundle\Entity\Categorie $categorie
+     * @return Film
+     */
+    public function setCategorie(\MyApp\FilmothequeBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \MyApp\FilmothequeBundle\Entity\Categorie 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }

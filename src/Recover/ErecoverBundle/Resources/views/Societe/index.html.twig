@@ -1,0 +1,66 @@
+{% extends "RecoverErecoverBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block recovererecover_body %}
+
+
+
+    <h1>Societe list</h1>
+	<hr>
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Raison Social</th>
+                <th>Telephone </th>
+                <th>Adresse</th>
+                <th>Site web</th>
+                <th>Email</th>
+                <th>Fax</th>
+                <th>Capital</th>
+                <th>Registre de commerce</th>
+                <th>Ninea</th>
+                <th>Statut</th>
+                <th>Pays</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('societe_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.raisoc }}</td>
+                <td>{{ entity.telephone }}</td>
+                <td>{{ entity.adresse }}</td>
+                <td>{{ entity.siteweb }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.fax }}</td>
+                <td>{{ entity.capital }}</td>
+                <td>{{ entity.rc }}</td>
+                <td>{{ entity.ninea }}</td>
+                <td>{{ entity.statut }}</td>
+                <td>{{ entity.pays }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('societe_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('societe_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a class="btn btn-primary btn-large" href="{{ path('societe_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

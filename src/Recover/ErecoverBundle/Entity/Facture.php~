@@ -1,0 +1,143 @@
+<?php
+
+namespace Recover\ErecoverBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Facture
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Recover\ErecoverBundle\Entity\FactureRepository")
+ */
+class Facture
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numero", type="string", length=255)
+     */
+    private $numero;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="montantht", type="integer")
+     */
+    private $montantht;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateedition", type="date")
+     */
+    private $dateedition;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Recover\ErecoverBundle\Entity\Societe")
+     */
+    private $societe;
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Recover\ErecoverBundle\Entity\Etat")
+     */
+    private $etat;
+    
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Recover\ErecoverBundle\Entity\Tva")
+     */
+    private $tva;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set numero
+     *
+     * @param string $numero
+     * @return Facture
+     */
+    public function setNumero($numero)
+    {
+        $this->numero = $numero;
+
+        return $this;
+    }
+
+    /**
+     * Get numero
+     *
+     * @return string 
+     */
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    /**
+     * Set montantht
+     *
+     * @param integer $montantht
+     * @return Facture
+     */
+    public function setMontantht($montantht)
+    {
+        $this->montantht = $montantht;
+
+        return $this;
+    }
+
+    /**
+     * Get montantht
+     *
+     * @return integer 
+     */
+    public function getMontantht()
+    {
+        return $this->montantht;
+    }
+
+    /**
+     * Set dateedition
+     *
+     * @param \DateTime $dateedition
+     * @return Facture
+     */
+    public function setDateedition($dateedition)
+    {
+        $this->dateedition = $dateedition;
+
+        return $this;
+    }
+
+    /**
+     * Get dateedition
+     *
+     * @return \DateTime 
+     */
+    public function getDateedition()
+    {
+        return $this->dateedition;
+    }
+}

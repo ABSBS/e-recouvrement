@@ -1,3 +1,7 @@
+recover_erecover:
+    resource: "@RecoverErecoverBundle/Resources/config/routing.yml"
+    prefix:   /recover
+
 myAppFilmothequeBundle:
     resource: "@MyAppFilmothequeBundle/Resources/config/routing.yml"
     prefix:   /myapp
