@@ -17,6 +17,8 @@ type="text/css" /> {% endblock %}
 <h3>Le Recouvrement</h3>
 <ul class="nav nav-pills nav-stacked">
 <li><a href="{{ path('recover_erecover_homepage') }}">Accueil</a></li>
+<li><a href="{{ path('societe') }}">Societe</a></li>
+<li><a href="{{ path('facture', {'page':1}) }}">facture</a></li>
 
 </ul>
 {# { render(controller("RecoverErecoverBundle:Menu:index", {'nombre': 3}))} #}

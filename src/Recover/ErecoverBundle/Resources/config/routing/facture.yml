@@ -1,6 +1,8 @@
 facture:
-    path:     /
+    path:     /{page}
     defaults: { _controller: "RecoverErecoverBundle:Facture:index" }
+    requirements:
+       page: \d
 
 facture_show:
     path:     /{id}/show

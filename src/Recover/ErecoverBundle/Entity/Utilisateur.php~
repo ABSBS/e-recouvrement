@@ -188,4 +188,27 @@ class Utilisateur
     {
         return $this->email;
     }
+
+    /**
+     * Set role
+     *
+     * @param \Recover\ErecoverBundle\Entity\Role $role
+     * @return Utilisateur
+     */
+    public function setRole(\Recover\ErecoverBundle\Entity\Role $role = null)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return \Recover\ErecoverBundle\Entity\Role 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
 }

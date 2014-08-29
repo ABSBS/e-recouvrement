@@ -3,7 +3,7 @@
 namespace Recover\ErecoverBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Section
  *
@@ -23,14 +23,20 @@ class Section
 
     /**
      * @var string
+     **@Assert\NotBlank(
+     *		message = "Nom ne doit pas etre vide."
      *
+     *)
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
     /**
      * @var string
+     *@Assert\NotBlank(
+     *		message = " Adresse ne doit pas etre vide."
      *
+     *)
      * @ORM\Column(name="adresse", type="string", length=255)
      */
     private $adresse;
@@ -41,10 +47,15 @@ class Section
      * @ORM\Column(name="telephone", type="string", length=255)
      */
     private $telephone;
+    
+    
 
     /**
      * @var string
-     *
+     ** @Assert\Email(
+     *     message = "'{{ value }}' n'est pas un email valide.",
+     *     checkMX = true
+     *  )
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
@@ -59,7 +70,7 @@ class Section
     
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Recover\ErecoverBundle\Entity\Societe")
+     * @ORM\ManyToOne(targetEntity="Recover\ErecoverBundle\Entity\Societe", inversedBy="sections" ,cascade={"persist"})
      */
     private $societe;
     
@@ -189,4 +200,32 @@ class Section
     {
         return $this->fax;
     }
+
+    /**
+     * Set societe
+     *
+     * @param \Recover\ErecoverBundle\Entity\Societe $societe
+     * @return Section
+     */
+    public function setSociete(\Recover\ErecoverBundle\Entity\Societe $societe = null)
+    {
+        $this->societe = $societe;
+
+        return $this;
+    }
+
+    /**
+     * Get societe
+     *
+     * @return \Recover\ErecoverBundle\Entity\Societe 
+     */
+    public function getSociete()
+    {
+        return $this->societe;
+    }
+    
+   /*  public function __toString()
+    {
+    	return $this->societe->id;
+    } */
 }

@@ -61,4 +61,9 @@ class Tva
     {
         return $this->taux;
     }
+    
+    public function __toString()
+    {
+    	return (String) $this->taux;
+    }
 }

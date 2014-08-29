@@ -21,6 +21,7 @@ class FactureType extends AbstractType
             ->add('societe')
             ->add('etat')
             ->add('tva')
+            ->add('image', new ImageType() ) 
         ;
     }
     

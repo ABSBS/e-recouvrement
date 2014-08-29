@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new MyApp\FilmothequeBundle\MyAppFilmothequeBundle(),
             new Recover\ErecoverBundle\RecoverErecoverBundle(),
         	#new FOS\UserBundle\FOSUserBundle(),
+            new Recover\UserBundle\RecoverUserBundle(),
+        		
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

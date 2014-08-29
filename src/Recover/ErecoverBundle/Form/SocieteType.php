@@ -19,13 +19,16 @@ class SocieteType extends AbstractType
             ->add('telephone')
             ->add('adresse')
             ->add('siteweb')
-            ->add('email')
+            ->add('email','email')
             ->add('fax')
             ->add('capital')
             ->add('rc')
             ->add('ninea')
             ->add('statut')
             ->add('pays')
+            ->add('sections', 'collection', array('type'=>new SectionType() ,
+            									  'allow_add' =>true,
+            									  'allow_delete'=>true))
         ;
     }
     

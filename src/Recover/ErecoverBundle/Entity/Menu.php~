@@ -67,4 +67,44 @@ class Menu
     {
         return $this->menu;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rubrique = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add rubrique
+     *
+     * @param \Recover\ErecoverBundle\Entity\Rubrique $rubrique
+     * @return Menu
+     */
+    public function addRubrique(\Recover\ErecoverBundle\Entity\Rubrique $rubrique)
+    {
+        $this->rubrique[] = $rubrique;
+
+        return $this;
+    }
+
+    /**
+     * Remove rubrique
+     *
+     * @param \Recover\ErecoverBundle\Entity\Rubrique $rubrique
+     */
+    public function removeRubrique(\Recover\ErecoverBundle\Entity\Rubrique $rubrique)
+    {
+        $this->rubrique->removeElement($rubrique);
+    }
+
+    /**
+     * Get rubrique
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRubrique()
+    {
+        return $this->rubrique;
+    }
 }

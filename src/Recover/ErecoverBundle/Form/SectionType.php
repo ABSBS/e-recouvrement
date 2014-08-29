@@ -20,7 +20,7 @@ class SectionType extends AbstractType
             ->add('telephone')
             ->add('email')
             ->add('fax')
-            ->add('societe')
+            #->add('societe')
         ;
     }
     

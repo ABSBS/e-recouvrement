@@ -60,84 +60,14 @@ class Facture
      * @ORM\ManyToMany(targetEntity="Recover\ErecoverBundle\Entity\Tva")
      */
     private $tva;
-
-
+    
     /**
-     * Get id
      *
-     * @return integer 
+     * @ORM\OneToOne(targetEntity="Recover\ErecoverBundle\Entity\Image" , cascade={"persist","remove"})
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $image;
 
-    /**
-     * Set numero
-     *
-     * @param string $numero
-     * @return Facture
-     */
-    public function setNumero($numero)
-    {
-        $this->numero = $numero;
 
-        return $this;
-    }
-
-    /**
-     * Get numero
-     *
-     * @return string 
-     */
-    public function getNumero()
-    {
-        return $this->numero;
-    }
-
-    /**
-     * Set montantht
-     *
-     * @param integer $montantht
-     * @return Facture
-     */
-    public function setMontantht($montantht)
-    {
-        $this->montantht = $montantht;
-
-        return $this;
-    }
-
-    /**
-     * Get montantht
-     *
-     * @return integer 
-     */
-    public function getMontantht()
-    {
-        return $this->montantht;
-    }
-
-    /**
-     * Set dateedition
-     *
-     * @param \DateTime $dateedition
-     * @return Facture
-     */
-    public function setDateedition($dateedition)
-    {
-        $this->dateedition = $dateedition;
-
-        return $this;
-    }
-
-    /**
-     * Get dateedition
-     *
-     * @return \DateTime 
-     */
-    public function getDateedition()
-    {
-        return $this->dateedition;
-    }
+    
+    
 }

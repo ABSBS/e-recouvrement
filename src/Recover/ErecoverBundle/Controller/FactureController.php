@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Recover\ErecoverBundle\Entity\Facture;
 use Recover\ErecoverBundle\Form\FactureType;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * Facture controller.
@@ -19,27 +21,44 @@ class FactureController extends Controller
      * Lists all Facture entities.
      *
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('RecoverErecoverBundle:Facture')->findAll();
+        #$entities = $em->getRepository('RecoverErecoverBundle:Facture')->findAll();
+        $entities =$em->getRepository('RecoverErecoverBundle:Facture')->getFactures(3,$page);
 
         return $this->render('RecoverErecoverBundle:Facture:index.html.twig', array(
             'entities' => $entities,
+        	'page' => $page,
+        	'nombrePage' => ceil(count($entities)/3),
         ));
     }
     /**
-     * Creates a new Facture entity.
-     *
-     */
+     * Creates a new Fac
+    * 
+    **/
     public function createAction(Request $request)
     {
-        $entity = new Facture();
+         if(!$this->get('security.context')->isGranted('ROLE_ADMIN'))
+        {
+        	throw new AccessDeniedHttpException('Acces limiter aux administrateurs !!!');
+        } 
+    	
+    	
+    	
+    	$entity = new Facture();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+        	// on traitte manuellement le fichier uploader
+        	// on boucle sur les images
+        	/*  foreach ($entity->getImages() as $image)
+        	{
+        	$image->upload();
+        	$image->setFacture($entity);
+        	}  */
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

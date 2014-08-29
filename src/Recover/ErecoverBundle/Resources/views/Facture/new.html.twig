@@ -9,9 +9,11 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('facture') }}">
+        <a href="{{ path('facture', {'page':1}) }}" class="btn">
+        	<i class="icon-chevron-left"></i>
             Back to the list
         </a>
     </li>
 </ul>
+
 {% endblock %}

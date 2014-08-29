@@ -3,6 +3,7 @@
 namespace Recover\ErecoverBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Facture
@@ -25,6 +26,7 @@ class Facture
      * @var string
      *
      * @ORM\Column(name="numero", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $numero;
 
@@ -32,6 +34,7 @@ class Facture
      * @var integer
      *
      * @ORM\Column(name="montantht", type="integer")
+     * @Assert\NotBlank()
      */
     private $montantht;
 
@@ -39,6 +42,7 @@ class Facture
      * @var \DateTime
      *
      * @ORM\Column(name="dateedition", type="date")
+     * @Assert\Date()
      */
     private $dateedition;
     
@@ -46,21 +50,41 @@ class Facture
     /**
      *
      * @ORM\ManyToOne(targetEntity="Recover\ErecoverBundle\Entity\Societe")
+     * @Assert\NotBlank()
      */
     private $societe;
     
     /**
      *
      * @ORM\ManyToOne(targetEntity="Recover\ErecoverBundle\Entity\Etat")
+     * @Assert\NotBlank()
      */
     private $etat;
     
     /**
      *
      * @ORM\ManyToMany(targetEntity="Recover\ErecoverBundle\Entity\Tva")
+     * @Assert\NotBlank()
      */
     private $tva;
+    
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="Recover\ErecoverBundle\Entity\Image" , cascade={"persist","remove"})
+     * @Assert\Valid()
+     */
+    private $image;
 
+
+    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tva = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -139,13 +163,6 @@ class Facture
     public function getDateedition()
     {
         return $this->dateedition;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->tva = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -226,9 +243,27 @@ class Facture
     {
         return $this->tva;
     }
-    
-    public function  __toString()
+
+    /**
+     * Set image
+     *
+     * @param \Recover\ErecoverBundle\Entity\Image $image
+     * @return Facture
+     */
+    public function setImage(\Recover\ErecoverBundle\Entity\Image $image = null)
     {
-    	return $this->numero;
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Recover\ErecoverBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

@@ -97,6 +97,14 @@ class Societe
      * @ORM\Column(name="pays", type="string", length=30)
      */
     private $pays;
+    
+    
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Recover\ErecoverBundle\Entity\Section", mappedBy="societe",cascade={"persist"})
+     */
+     
+    private $sections;
 
 
     /**
@@ -365,5 +373,45 @@ class Societe
     public function __toString()
     {
     	return $this->raisoc;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sections = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add sections
+     *
+     * @param \Recover\ErecoverBundle\Entity\Section $sections
+     * @return Societe
+     */
+    public function addSection(\Recover\ErecoverBundle\Entity\Section $sections)
+    {
+        $this->sections[] = $sections;
+
+        return $this;
+    }
+
+    /**
+     * Remove sections
+     *
+     * @param \Recover\ErecoverBundle\Entity\Section $sections
+     */
+    public function removeSection(\Recover\ErecoverBundle\Entity\Section $sections)
+    {
+        $this->sections->removeElement($sections);
+    }
+
+    /**
+     * Get sections
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSections()
+    {
+        return $this->sections;
     }
 }

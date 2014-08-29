@@ -60,5 +60,11 @@ class Rubrique
     public function getRubrique()
     {
         return $this->rubrique;
+        
+    }
+    
+    public function __toString()
+    {
+    	return $this->rubrique;
     }
 }
