@@ -15,20 +15,19 @@ class SocieteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('raisoc')
+            ->add('raisoc' ,null, array('label'=>'Raison Social'))
             ->add('telephone')
             ->add('adresse')
             ->add('siteweb')
-            ->add('email','email')
+            ->add('email')
             ->add('fax')
-            ->add('capital')
+            ->add('capital','money',array('currency'=>'XOF','label' => 'Capital en '))
             ->add('rc')
             ->add('ninea')
             ->add('statut')
-            ->add('pays')
-            ->add('sections', 'collection', array('type'=>new SectionType() ,
-            									  'allow_add' =>true,
-            									  'allow_delete'=>true))
+            ->add('pays','country')
+            ->add('active','checkbox',array('required' => 'false'))
+            ->add('sections')
         ;
     }
     

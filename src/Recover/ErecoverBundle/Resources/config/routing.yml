@@ -42,3 +42,9 @@ RecoverErecoverBundle_rubrique:
 RecoverErecoverBundle_menu:
         resource: "@RecoverErecoverBundle/Resources/config/routing/menu.yml"
         prefix:   /menu
+RecoverErecoverBundle_pays:
+        resource: "@RecoverErecoverBundle/Resources/config/routing/pays.yml"
+        prefix:   /pays
+RecoverErecoverBundle_statut:
+        resource: "@RecoverErecoverBundle/Resources/config/routing/statut.yml"
+        prefix:   /statut

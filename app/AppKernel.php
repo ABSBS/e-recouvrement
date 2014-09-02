@@ -3,6 +3,7 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use JMS\SecurityExtraBundle\JMSSecurityExtraBundle;
 
 class AppKernel extends Kernel
 {
@@ -20,8 +21,11 @@ class AppKernel extends Kernel
             new Ens\JobeetBundle\EnsJobeetBundle(),
             new MyApp\FilmothequeBundle\MyAppFilmothequeBundle(),
             new Recover\ErecoverBundle\RecoverErecoverBundle(),
-        	#new FOS\UserBundle\FOSUserBundle(),
+        	new FOS\UserBundle\FOSUserBundle(),
             new Recover\UserBundle\RecoverUserBundle(),
+        	new JMS\AopBundle\JMSAopBundle(),
+    		new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+    		new JMS\DiExtraBundle\JMSDiExtraBundle($this),
         		
         );
 

@@ -12,15 +12,15 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Numero</th>
+                <th>Numero:</th>
                 <td>{{ entity.numero }}</td>
             </tr>
             <tr>
-                <th>Montantht</th>
+                <th>Montant Hors Taches:</th>
                 <td>{{ entity.montantht }}</td>
             </tr>
             <tr>
-                <th>Dateedition</th>
+                <th>Date Edition:</th>
                 <td>{{ entity.dateedition|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
@@ -33,12 +33,16 @@
             Back to the list
         </a>
     </li>
+    {% if is_granted('ROLE_ADMIN') %}
     <li>
+    
         <a href="{{ path('facture_edit', { 'id': entity.id }) }}" class="btn">
         	<i class="icon-chevron-edit"></i>
             Edit
         </a>
     </li>
+   
     <li>{{ form(delete_form) }}</li>
+     {% endif  %}
 </ul>
 {% endblock %}

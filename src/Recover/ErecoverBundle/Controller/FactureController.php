@@ -35,15 +35,13 @@ class FactureController extends Controller
         ));
     }
     /**
-     * Creates a new Fac
+     * Creates a new Facture
     * 
     **/
+    
     public function createAction(Request $request)
     {
-         if(!$this->get('security.context')->isGranted('ROLE_ADMIN'))
-        {
-        	throw new AccessDeniedHttpException('Acces limiter aux administrateurs !!!');
-        } 
+       
     	
     	
     	
@@ -95,9 +93,16 @@ class FactureController extends Controller
      * Displays a form to create a new Facture entity.
      *
      */
+    
+     // @Secure(roles="ROLE_ADMIN")
+     
     public function newAction()
     {
-        $entity = new Facture();
+    	/*  if(!$this->get('security.context')->isGranted('ROLE_ADMIN'))
+    	 {
+    	throw new AccessDeniedHttpException('Acces limiter aux administrateurs !!!');
+    	}   */
+    	$entity = new Facture();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('RecoverErecoverBundle:Facture:new.html.twig', array(

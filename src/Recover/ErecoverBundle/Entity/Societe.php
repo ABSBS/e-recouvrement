@@ -87,25 +87,44 @@ class Societe
     /**
      * @var string
      *
-     * @ORM\Column(name="statut", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="Recover\ErecoverBundle\Entity\Statut")
      */
     private $statut;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=30)
+     * @ORM\Column(name="pays" , type="string" ,length=255)
      */
     private $pays;
     
     
     /**
      *
-     * @ORM\OneToMany(targetEntity="Recover\ErecoverBundle\Entity\Section", mappedBy="societe",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Recover\ErecoverBundle\Entity\Section")
      */
      
     private $sections;
+    /**
+     * 
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
+    
+    
+    
 
+
+    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sections = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -325,29 +344,6 @@ class Societe
     }
 
     /**
-     * Set statut
-     *
-     * @param string $statut
-     * @return Societe
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return string 
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    /**
      * Set pays
      *
      * @param string $pays
@@ -369,17 +365,51 @@ class Societe
     {
         return $this->pays;
     }
-    
-    public function __toString()
-    {
-    	return $this->raisoc;
-    }
+
     /**
-     * Constructor
+     * Set active
+     *
+     * @param boolean $active
+     * @return Societe
      */
-    public function __construct()
+    public function setActive($active)
     {
-        $this->sections = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param \Recover\ErecoverBundle\Entity\Statut $statut
+     * @return Societe
+     */
+    public function setStatut(\Recover\ErecoverBundle\Entity\Statut $statut = null)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return \Recover\ErecoverBundle\Entity\Statut 
+     */
+    public function getStatut()
+    {
+        return $this->statut;
     }
 
     /**
@@ -413,5 +443,9 @@ class Societe
     public function getSections()
     {
         return $this->sections;
+    }
+    public function __toString()
+    {
+    	return $this->raisoc;
     }
 }

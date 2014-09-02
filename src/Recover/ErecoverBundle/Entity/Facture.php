@@ -39,10 +39,10 @@ class Facture
     private $montantht;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="dateedition", type="date")
-     * @Assert\Date()
+     * 
      */
     private $dateedition;
     

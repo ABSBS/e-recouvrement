@@ -8,4 +8,5 @@ encoding//src/Recover/ErecoverBundle/Resources/views/Facture/new.html.twig=UTF-8
 encoding//src/Recover/ErecoverBundle/Resources/views/Section/new.html.twig=UTF-8
 encoding//src/Recover/ErecoverBundle/Resources/views/Societe/new.html.twig=UTF-8
 encoding//src/Recover/ErecoverBundle/Resources/views/layout.html.twig=UTF-8
-encoding//src/Recover/UserBundle/Controller/SecurityController.php=UTF-8
+encoding//src/Recover/UserBundle/DataFixtures/ORM/User.php=UTF-8
+encoding//src/Recover/UserBundle/Resources/views/User/registration.email.twig=UTF-8

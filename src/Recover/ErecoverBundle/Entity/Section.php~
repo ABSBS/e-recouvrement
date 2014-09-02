@@ -68,11 +68,7 @@ class Section
     private $fax;
     
     
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="Recover\ErecoverBundle\Entity\Societe", inversedBy="sections" ,cascade={"persist"})
-     */
-    private $societe;
+    
     
 
 
@@ -224,8 +220,8 @@ class Section
         return $this->societe;
     }
     
-   /*  public function __toString()
+     public function __toString()
     {
-    	return $this->societe->id;
-    } */
+    	return $this->nom;
+    } 
 }

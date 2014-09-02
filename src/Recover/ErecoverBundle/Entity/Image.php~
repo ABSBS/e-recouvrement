@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Recover\ErecoverBundle\Entity\ImageRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Image
 {
@@ -185,21 +186,19 @@ class Image
     
     public function preUpload()
     { 
-    	if (null===$this->file)
+    	// Si jamais il n'y a pas de fichier (champ facultatif)
+    	if (null === $this->file)
     	{
     	return;
     	 }
-    	// Si jamais il n'y a pas de fichier (champ facultatif)
-    	if (null === $this->file)
+    	
+    	// Le nom du fichier est son id, on doit juste stocker également son extension
+    	// Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « url »
+    	$this->url = $this->file->guessExtension();
+    	// Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
+    	$this->alt = $this->file->getClientOriginalName(); 
+    	$this->titre = $this->file->getClientOriginalName(); 
     		
-    		{
-    			// Le nom du fichier est son id, on doit juste stocker également son extension
-    			// Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « url »
-    			$this->url = $this->file->guessExtension();
-    			// Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
-    			$this->alt = $this->file->getClientOriginalName(); 
-    			$this->titre = $this->file->getClientOriginalName(); 
-    		}
     }
     
     /**
@@ -208,6 +207,7 @@ class Image
     **/
     public function upload()
     	{
+    		
     		if (null === $this->file)
     		{
     			return; 
@@ -220,8 +220,8 @@ class Image
     				}
     			// On déplace le fichier envoyé dans le répertoire de notre choix
     				$this->file->move($this->getUploadRootDir(), // Le répertoire de destination
-    						$this->id.'.'.$this->url // le nom du fichier a creer ici « id.extension »
-    				);
+    				$this->id.'.'.$this->url // le nom du fichier a creer ici « id.extension »
+    				                  );
     	 }
     	 
     /**
@@ -275,6 +275,10 @@ class Image
     			// On retourne le chemin relatif vers l'image pour notre code PHP
     			// Si jamais il n'y a pas de fichier (champ facultatif)
     			return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    		}
+    public function getWebPath()
+    		{
+    			return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl(); 
     		}
    
 }

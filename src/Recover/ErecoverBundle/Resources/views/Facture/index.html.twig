@@ -5,14 +5,14 @@
 {% block recovererecover_body %}
     <h1>Facture list</h1>
 
-    <table class="records_list">
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
+                <th></th>
                 <th>Numero</th>
-                <th>Montantht</th>
-                <th>Dateedition</th>
-                <th>Actions</th>
+                <th>Montan hors Taxe</th>
+                <th>Date Edition</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -23,14 +23,16 @@
                 <td>{{ entity.montantht }}</td>
                 <td>{% if entity.dateedition %}{{ entity.dateedition|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('facture_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('facture_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                <!--ul>
+                    <li-->
+                        <a href="{{ path('facture_show', { 'id': entity.id }) }}" class="btn btn-info">show</a>
+                    <!--/li-->
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <!--li-->
+                        <a href="{{ path('facture_edit', { 'id': entity.id }) }}" class="btn btn-info">edit</a>
+                    <!--/li-->
+                    {% endif %}
+                <!--/ul-->
                 </td>
             </tr>
         {% endfor %}
@@ -48,10 +50,11 @@
 {% endfor %} </ul>
 </div>
  <p>
-        
+            {% if is_granted('ROLE_ADMIN') %}
             <a class="btn btn-primary btn-large" href="{{ path('facture_new') }}">
                 Create a new entry
             </a>
+            {% endif %}
         
     </p>
     {% endblock %}

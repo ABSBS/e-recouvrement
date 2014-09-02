@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class FactureType extends AbstractType
+class SocieteType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,15 +15,20 @@ class FactureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numero')
-            ->add('montantht','money',array('label' => 'Montant Hors Taxe ',
-            		                        'currency' =>'XOF'
-                                           ))
-            ->add('dateedition',null, array('label' => 'Date Edition'))
-            ->add('societe',null,array('empty_value' => 'Selectionnez la societe'))
-            ->add('etat')
-            ->add('tva')
-            ->add('image', new ImageType() ) 
+            ->add('raisoc')
+            ->add('telephone')
+            ->add('adresse')
+            ->add('siteweb')
+            ->add('email','email')
+            ->add('fax')
+            ->add('capital')
+            ->add('rc')
+            ->add('ninea')
+            ->add('statut')
+            ->add('pays')
+            ->add('sections', 'collection', array('type'=>new SectionType() ,
+            									  'allow_add' =>true,
+            									  'allow_delete'=>true))
         ;
     }
     
@@ -33,7 +38,7 @@ class FactureType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Recover\ErecoverBundle\Entity\Facture'
+            'data_class' => 'Recover\ErecoverBundle\Entity\Societe'
         ));
     }
 
@@ -42,6 +47,6 @@ class FactureType extends AbstractType
      */
     public function getName()
     {
-        return 'recover_erecoverbundle_facture';
+        return 'recover_erecoverbundle_societe';
     }
 }
