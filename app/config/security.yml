@@ -34,7 +34,7 @@ fos_user:
         #form:
             #type: recover_userbundle_user  
         confirmation:
-            enabled: true
+            enabled: false
             from_email: 
                 address: absbs-technologies@outlook.fr
                 sender_name: ABSBS Technologies

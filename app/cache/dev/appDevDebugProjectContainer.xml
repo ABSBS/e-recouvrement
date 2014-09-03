@@ -545,7 +545,7 @@
     <parameter key="fos_user.registration.confirmation.from_email" type="collection">
       <parameter key="absbs-technologies@outlook.fr">ABSBS Technologies</parameter>
     </parameter>
-    <parameter key="fos_user.registration.confirmation.enabled">true</parameter>
+    <parameter key="fos_user.registration.confirmation.enabled">false</parameter>
     <parameter key="fos_user.registration.form.type">fos_user_registration</parameter>
     <parameter key="fos_user.registration.form.name">fos_user_registration_form</parameter>
     <parameter key="fos_user.registration.form.validation_groups" type="collection">
@@ -627,8 +627,8 @@
     <parameter key="jms_di_extra.disable_grep">false</parameter>
     <parameter key="jms_di_extra.doctrine_integration">true</parameter>
     <parameter key="jms_di_extra.cache_warmer.controller_file_blacklist" type="collection"/>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/Users/ahmed/Sites/site1/app/cache/dev/jms_diextra/doctrine/EntityManager_5405f01795a55.php</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager5405f01795a55_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/Users/ahmed/Sites/site1/app/cache/dev/jms_diextra/doctrine/EntityManager_540709ba178a9.php</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager540709ba178a9_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -2349,10 +2349,6 @@
         <argument>FOS\UserBundle\EventListener\FlashListener</argument>
       </call>
       <call method="addSubscriberService">
-        <argument>fos_user.listener.email_confirmation</argument>
-        <argument>FOS\UserBundle\EventListener\EmailConfirmationListener</argument>
-      </call>
-      <call method="addSubscriberService">
         <argument>fos_user.listener.resetting</argument>
         <argument>FOS\UserBundle\EventListener\ResettingListener</argument>
       </call>
@@ -3004,7 +3000,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5405f016ca78e</argument>
+            <argument>540709b957260</argument>
           </service>
         </argument>
       </argument>
@@ -3338,7 +3334,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5405f016ca78e</argument>
+            <argument>540709b957260</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3772,8 +3768,8 @@
       <argument type="collection"/>
       <argument type="collection"/>
     </service>
-    <service id="doctrine.orm.default_entity_manager" class="EntityManager5405f01795a55_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
-      <file>/Users/ahmed/Sites/site1/app/cache/dev/jms_diextra/doctrine/EntityManager_5405f01795a55.php</file>
+    <service id="doctrine.orm.default_entity_manager" class="EntityManager540709ba178a9_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
+      <file>/Users/ahmed/Sites/site1/app/cache/dev/jms_diextra/doctrine/EntityManager_540709ba178a9.php</file>
       <argument type="service">
         <service class="Doctrine\ORM\EntityManager" factory-method="create" factory-class="%doctrine.orm.entity_manager.class%" public="false">
           <argument type="service" id="doctrine.dbal.default_connection"/>
@@ -4021,13 +4017,6 @@
     <service id="fos_user.registration.form.type" class="FOS\UserBundle\Form\Type\RegistrationFormType">
       <tag name="form.type" alias="fos_user_registration"/>
       <argument>Recover\UserBundle\Entity\User</argument>
-    </service>
-    <service id="fos_user.listener.email_confirmation" class="FOS\UserBundle\EventListener\EmailConfirmationListener">
-      <tag name="kernel.event_subscriber"/>
-      <argument type="service" id="fos_user.mailer"/>
-      <argument type="service" id="fos_user.util.token_generator"/>
-      <argument type="service" id="router"/>
-      <argument type="service" id="session"/>
     </service>
     <service id="fos_user.change_password.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>

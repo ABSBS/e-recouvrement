@@ -85,7 +85,7 @@ class Societe
     private $ninea;
 
     /**
-     * @var string
+     * 
      *
      * @ORM\OneToOne(targetEntity="Recover\ErecoverBundle\Entity\Statut")
      */
@@ -111,6 +111,13 @@ class Societe
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+    
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Recover\UserBundle\Entity\User")
+     */
+     
+    private $users;
     
     
     
@@ -447,5 +454,38 @@ class Societe
     public function __toString()
     {
     	return $this->raisoc;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \Recover\UserBundle\Entity\User $users
+     * @return Societe
+     */
+    public function addUser(\Recover\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Recover\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Recover\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

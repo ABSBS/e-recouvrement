@@ -26,7 +26,16 @@ class FactureController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         #$entities = $em->getRepository('RecoverErecoverBundle:Facture')->findAll();
-        $entities =$em->getRepository('RecoverErecoverBundle:Facture')->getFactures(3,$page);
+        if($this->get('security.context')->isGranted('ROLE_ADMIN'))
+        {
+        	$entities =$em->getRepository('RecoverErecoverBundle:Facture')->getFactures(3,$page);
+        }
+        else if($this->get('security.context')->isGranted('ROLE_SOCIETE'))
+        {
+        	$entities =$em->getRepository('RecoverErecoverBundle:Facture')->getFacturesBySociete(3,$page,'22');
+        }
+        #else 
+        #	$entities =$em->getRepository('RecoverErecoverBundle:Facture')->getFactures(3,$page);
 
         return $this->render('RecoverErecoverBundle:Facture:index.html.twig', array(
             'entities' => $entities,

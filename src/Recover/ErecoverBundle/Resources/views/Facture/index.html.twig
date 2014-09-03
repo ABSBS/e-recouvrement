@@ -12,6 +12,7 @@
                 <th>Numero</th>
                 <th>Montan hors Taxe</th>
                 <th>Date Edition</th>
+                <th>Societe</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ entity.numero }}</td>
                 <td>{{ entity.montantht }}</td>
                 <td>{% if entity.dateedition %}{{ entity.dateedition|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.societe %}{{ entity.societe }}{% endif %}</td>
                 <td>
                 <!--ul>
                     <li-->

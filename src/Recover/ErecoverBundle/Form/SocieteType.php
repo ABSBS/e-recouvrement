@@ -28,6 +28,7 @@ class SocieteType extends AbstractType
             ->add('pays','country')
             ->add('active','checkbox',array('required' => 'false'))
             ->add('sections')
+            ->add('users',null,array('label' => 'Utilisateur(s)'))
         ;
     }
     
