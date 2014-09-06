@@ -39,12 +39,20 @@ class Facture
     private $montantht;
 
     /**
-     * @var \Date
+     * @var \DateTime
      *
-     * @ORM\Column(name="dateedition", type="date")
+     * @ORM\Column(name="dateedition", type="datetime")
      * 
      */
     private $dateedition;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateecheance", type="datetime")
+     *
+     */
+    private $dateecheance;
     
     
     /**
@@ -84,6 +92,8 @@ class Facture
     public function __construct()
     {
         $this->tva = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateedition = new \DateTime;
+        $this->dateecheance = new \DateTime;
     }
 
     /**
@@ -265,5 +275,28 @@ class Facture
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set dateecheance
+     *
+     * @param \DateTime $dateecheance
+     * @return Facture
+     */
+    public function setDateecheance($dateecheance)
+    {
+        $this->dateecheance = $dateecheance;
+
+        return $this;
+    }
+
+    /**
+     * Get dateecheance
+     *
+     * @return \DateTime 
+     */
+    public function getDateecheance()
+    {
+        return $this->dateecheance;
     }
 }

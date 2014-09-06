@@ -20,6 +20,7 @@ class FactureType extends AbstractType
             		                        'currency' =>'XOF'
                                            ))
             ->add('dateedition',null, array('label' => 'Date Edition'))
+            ->add('dateecheance',null, array('label' => 'Date Echeance'))
             ->add('societe',null,array('empty_value' => 'Selectionnez la societe'))
             ->add('etat')
             ->add('tva')

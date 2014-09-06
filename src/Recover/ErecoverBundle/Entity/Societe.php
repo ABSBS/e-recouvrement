@@ -114,10 +114,10 @@ class Societe
     
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Recover\UserBundle\Entity\User")
+     * @ORM\OneToOne(targetEntity="Recover\UserBundle\Entity\User")
      */
      
-    private $users;
+    private $user;
     
     
     
@@ -125,6 +125,7 @@ class Societe
 
     
     
+   
     /**
      * Constructor
      */
@@ -451,41 +452,31 @@ class Societe
     {
         return $this->sections;
     }
-    public function __toString()
-    {
-    	return $this->raisoc;
-    }
 
     /**
-     * Add users
+     * Set user
      *
-     * @param \Recover\UserBundle\Entity\User $users
+     * @param \Recover\UserBundle\Entity\User $user
      * @return Societe
      */
-    public function addUser(\Recover\UserBundle\Entity\User $users)
+    public function setUser(\Recover\UserBundle\Entity\User $user = null)
     {
-        $this->users[] = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Remove users
+     * Get user
      *
-     * @param \Recover\UserBundle\Entity\User $users
+     * @return \Recover\UserBundle\Entity\User 
      */
-    public function removeUser(\Recover\UserBundle\Entity\User $users)
+    public function getUser()
     {
-        $this->users->removeElement($users);
+        return $this->user;
     }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
+    public function __toString()
     {
-        return $this->users;
+    	return $this->raisoc;
     }
 }

@@ -32,7 +32,19 @@ class FactureController extends Controller
         }
         else if($this->get('security.context')->isGranted('ROLE_SOCIETE'))
         {
-        	$entities =$em->getRepository('RecoverErecoverBundle:Facture')->getFacturesBySociete(3,$page,'22');
+        	
+        	$users = $this->getUser();
+        	if (null!= $users)
+        	{
+        	$societe = $em->getRepository('RecoverErecoverBundle:Societe')->findByUser($users);
+        	$entities =$em->getRepository('RecoverErecoverBundle:Facture')->getFacturesBySociete(3,$page,$societe);
+        	}
+        	else 
+        	{
+        		new \Exception('Utilisateur incorrect Bizarrre');
+        	}
+        	
+        	
         }
         #else 
         #	$entities =$em->getRepository('RecoverErecoverBundle:Facture')->getFactures(3,$page);
